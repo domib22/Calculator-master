@@ -36,8 +36,7 @@ public class Rpn {
                     rpn += "0" + " ";
                 }
 
-                while(!stackk.empty() && priority(stackk.peek()) >= priority(s))
-                {
+                while(!stackk.empty() && priority(stackk.peek()) >= priority(s)) {
                     rpn += stackk.pop() + " ";
                 }
                 stackk.push(s);
@@ -50,7 +49,6 @@ public class Rpn {
             else if(s.equals(")")) {
 
                 while(!stackk.peek().equals("(")) {
-
                     rpn += stackk.pop() + " ";
                 }
                 stackk.pop();
@@ -61,15 +59,10 @@ public class Rpn {
             negative = s;
         }
 
-
         while(!stackk.empty()) {
-
             rpn += stackk.pop() + " ";
-
         }
-
     }
-
 
     public static int priority(String operator) {
 
@@ -90,8 +83,8 @@ public class Rpn {
 
         Stack<Double> stackk = new Stack<>();
 
-        double a = 0;
-        double b = 0;
+        double a;
+        double b;
         double w = 0;
 
         String build = "";
@@ -106,6 +99,7 @@ public class Rpn {
             if(sign == '+' || sign == '-' || sign == '*' || sign == '/' || sign == '^')
             {
                 if(!stackk.empty()){
+                    LOG.info("Stack: " + stackk);
 
                     b = stackk.pop();
                     LOG.info("b = {}", b);
@@ -125,7 +119,6 @@ public class Rpn {
             else if(sign == sp) {
 
                 if(build.compareTo("")!=0){
-
                     double tmp = Double.parseDouble(build);
                     stackk.push(tmp);
                     build = "";
@@ -135,13 +128,12 @@ public class Rpn {
             else if(sign=='=') {
 
                 if(!stackk.empty()){
-
                     w = stackk.pop();
                     break;
                 }
             }
 
-            else if(sign >= '0' && sign <= '9') {
+            else if(sign == '.' || (sign >= '0' && sign <= '9')) {
                 build += sign;
             }
 

@@ -10,11 +10,11 @@ public class BasicCalculator implements Calculator {
     private Map<String, Method> data2 = new HashMap<>();
 
     public BasicCalculator(){
-        data2.put("+", new AddMethod());
-        data2.put("-", new SubtractMethod());
-        data2.put("*", new MultiplyMethod());
-        data2.put("/", new DivideMethod());
-        data2.put("^", new PowMethod());
+        add(new AddMethod());
+        add(new DivideMethod());
+        add(new MultiplyMethod());
+//        add(new PowMethod());
+        add(new SubtractMethod());
     }
 
     public void add(Method m){
