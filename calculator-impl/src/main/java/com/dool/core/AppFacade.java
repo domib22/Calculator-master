@@ -59,7 +59,7 @@ public class AppFacade {
                 System.exit(0);
             } else {
                 try {
-                    RPN rpn = new RPN(equation);
+                    Rpn rpn = new Rpn(equation);
 
                     System.out.println("Wyrażenie postfiksowe: " + rpn);
 
