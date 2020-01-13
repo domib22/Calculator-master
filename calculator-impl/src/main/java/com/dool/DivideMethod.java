@@ -6,7 +6,10 @@ public class DivideMethod implements Method {
 
     @Override
     public double calculate(double a, double b) {
-        return a / b;
+        if(b==0){
+            throw new IllegalArgumentException("ERROR: Dzielenie przez zero jest niemożliwe!");
+        }else {
+            return a / b; }
     }
 
     @Override

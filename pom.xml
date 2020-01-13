@@ -21,8 +21,6 @@
         <module>calculator-impl</module>
         <module>calculator-interface</module>
         <module>calculator-ui</module>
-        <module>Plugin</module>
-        <module>SqrtPlugin</module>
     </modules>
 
 </project>

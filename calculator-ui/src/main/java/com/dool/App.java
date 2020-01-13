@@ -1,15 +1,11 @@
 package com.dool;
 
-import com.dool.core.AppFasada;
+import com.dool.core.AppFacade;
 
 public class App 
 {
-
-
     public static void main(String[] args) {
-        new AppFasada().run();
+        new AppFacade().run();
     }
-
-
 
 }
