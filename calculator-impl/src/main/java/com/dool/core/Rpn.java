@@ -30,8 +30,12 @@ public class Rpn {
 
             String s = st.nextToken();
 
-            if( s.equals("+") || s.equals("*") || s.equals("-") || s.equals("/") || s.equals("^") || s.equals("%"))
+            if( s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/") || s.equals("^") || s.equals("%"))
             {
+                if(negative.equals("+") || negative.equals("-") || negative.equals("*") || negative.equals("/") || negative.equals("^") || negative.equals("%")){
+                    throw new IllegalArgumentException("Błędny zapis! (*ujemne liczby zapisuj w nawiasach)");
+                }
+
                 if(s.equals("-") && negative.equals("(")){
                     rpn += "0" + " ";
                 }
