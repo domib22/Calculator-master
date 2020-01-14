@@ -7,14 +7,14 @@ import org.apache.logging.log4j.Logger;
 import java.util.*;
 
 public class Rpn {
-    private BasicCalculator calculator = new BasicCalculator();
+    private BasicCalculator calculator;
     private final Logger LOG = LogManager.getLogger(getClass());
 
     private String equation;
     private String rpn;
 
-    public Rpn(String equation) {
-
+    public Rpn(String equation, BasicCalculator cal) {
+        this.calculator = cal;
         this.equation = equation;
         rpn = "";
         toRPN();
@@ -23,14 +23,14 @@ public class Rpn {
     private void toRPN() {
 
         Stack<String> stackk = new Stack<>();
-        StringTokenizer st = new StringTokenizer(equation, "+-*/^()", true);
+        StringTokenizer st = new StringTokenizer(equation, "+-*/^%()", true);
         String negative = "0";
 
         while(st.hasMoreTokens()) {
 
             String s = st.nextToken();
 
-            if( s.equals("+") || s.equals("*") || s.equals("-") || s.equals("/") || s.equals("^"))
+            if( s.equals("+") || s.equals("*") || s.equals("-") || s.equals("/") || s.equals("^") || s.equals("%"))
             {
                 if(s.equals("-") && negative.equals("(")){
                     rpn += "0" + " ";
@@ -67,7 +67,7 @@ public class Rpn {
     public static int priority(String operator) {
 
         if(operator.equals("+") || operator.equals("-")) {return 1;}
-        else if(operator.equals("*") || operator.equals("/")) {return 2;}
+        else if(operator.equals("*") || operator.equals("/") || operator.equals("%")) {return 2;}
         else if(operator.equals("^")){return 3;}
 
         else {return 0;}
@@ -88,7 +88,6 @@ public class Rpn {
         double w = 0;
 
         String build = "";
-
         char sp = ' ';
 
         int counter = 0;
@@ -96,7 +95,7 @@ public class Rpn {
         do {
             char sign = input.charAt(counter);
 
-            if(sign == '+' || sign == '-' || sign == '*' || sign == '/' || sign == '^')
+            if(sign == '+' || sign == '-' || sign == '*' || sign == '/' || sign == '^' || sign == '%')
             {
                 if(!stackk.empty()){
                     LOG.info("Stack: " + stackk);
@@ -111,6 +110,7 @@ public class Rpn {
                     else if(sign == '*'){ w = calculator.result("*", a, b); }
                     else if(sign == '/'){ w = calculator.result("/", a, b); }
                     else if(sign == '^'){ w = calculator.result("^", a, b); }
+                    else if(sign == '%'){ w = calculator.result("%", a, b); }
 
                     stackk.push(w);
                 }

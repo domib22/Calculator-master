@@ -29,9 +29,11 @@ public class AppFacade {
         data.put("/", "/");
         data.put("*", "*");
         data.put("^", "^");
-        //plugin();
-        Scanner in = new Scanner(System.in);
+        data.put("%", "%");
 
+        plugin();
+
+        Scanner in = new Scanner(System.in);
 //         double a, b;
 
         while(true) {
@@ -59,7 +61,7 @@ public class AppFacade {
                 System.exit(0);
             } else {
                 try {
-                    Rpn rpn = new Rpn(equation);
+                    Rpn rpn = new Rpn(equation, this.calculator);
 
                     System.out.println("Wyrażenie postfiksowe: " + rpn);
 
@@ -67,6 +69,7 @@ public class AppFacade {
                     System.out.println("Wynik: " + result);
                 } catch (IllegalArgumentException e) {
                     LOG.error(e);
+                    System.out.println(e.getMessage());
                 }
             }
         }

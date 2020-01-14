@@ -13,7 +13,6 @@ public class BasicCalculator implements Calculator {
         add(new AddMethod());
         add(new DivideMethod());
         add(new MultiplyMethod());
-//        add(new PowMethod());
         add(new SubtractMethod());
     }
 
