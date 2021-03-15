@@ -55,7 +55,7 @@ public class AppFacade {
 //                LOG.error(e);
 //            }
 
-            System.out.print("\nNaciśnij w, żeby wyjść\nPodaj wyrażenie: ");
+            System.out.print("\nNaciśnij w, żeby wyjść\nMożliwe operacje: +-/*^%\nPodaj wyrażenie: ");
             String equation = in.nextLine();
             if (equation.equals("w")) {
                 System.exit(0);

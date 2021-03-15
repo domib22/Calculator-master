@@ -106,15 +106,27 @@ public class Rpn {
 
                     b = stackk.pop();
                     LOG.info("b = {}", b);
-                    a = stackk.pop();
-                    LOG.info("a = {}", a);
 
-                    if(sign == '+'){ w = calculator.result("+", a, b); }
-                    else if(sign == '-'){ w = calculator.result("-", a, b); }
-                    else if(sign == '*'){ w = calculator.result("*", a, b); }
-                    else if(sign == '/'){ w = calculator.result("/", a, b); }
-                    else if(sign == '^'){ w = calculator.result("^", a, b); }
-                    else if(sign == '%'){ w = calculator.result("%", a, b); }
+                    if(!stackk.empty()) {
+                        a = stackk.pop();
+                        LOG.info("a = {}", a);
+
+                        if (sign == '+') {
+                            w = calculator.result("+", a, b);
+                        } else if (sign == '-') {
+                            w = calculator.result("-", a, b);
+                        } else if (sign == '*') {
+                            w = calculator.result("*", a, b);
+                        } else if (sign == '/') {
+                            w = calculator.result("/", a, b);
+                        } else if (sign == '^') {
+                            w = calculator.result("^", a, b);
+                        } else {   // sign == '%'
+                            w = calculator.result("%", a, b);
+                        }
+                    } else {
+                        w = b;
+                    }
 
                     stackk.push(w);
                 }
